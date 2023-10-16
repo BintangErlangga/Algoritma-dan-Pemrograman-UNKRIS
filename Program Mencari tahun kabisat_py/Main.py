@@ -1,18 +1,29 @@
-def apakahTahun_kabisat(tahun) :
-    
-    habisDibagi_400 = tahun % 400 == 0
-    habisDibagi_100 = tahun % 100 == 0
-    habisDibagi_4   = tahun % 4   == 0
+def cek_tahun_kabisat(tahun):
+    if tahun % 400 == 0  or ( tahun % 4 == 0 and tahun % 100 !=0):
+        return True
+    else :
+        return False
 
-    return habisDibagi_400 or(habisDibagi_4 and not habisDibagi_400)
+def tahun_kabisat_dan_bukan_kabisat_antara(x, y):
+    tahun_kabisat =[]
+    tahun_bukan_kabisat=[]
 
-tahunAwal  =int(input('Masukan tahun awal ='))
-tahunAkhir =int(input('Masukan tahun akhir ='))
+    for tahun in range(x, y +1):
+        if cek_tahun_kabisat(tahun):
+            tahun_kabisat.append(tahun)
+        else :
+            tahun_bukan_kabisat.append(tahun)
 
-tahunKabisat = []
+    return tahun_kabisat, tahun_bukan_kabisat
 
-for tahun in range(tahunAwal , tahunAkhir + 1):
-    if apakahTahun_kabisat(tahun):
-        tahunKabisat.append(tahun)
+#masukan tahun awal dan tahun akhir 
+tahunAwal = int(input('Masukan Tahun Awal ='))
+tahunAkhir = int(input('Masukan Tahun Akhir ='))
 
-print(f'{tahunKabisat} \nadalah tahun kabisat')
+tahun_kabisat,tahun_bukan_kabisat = tahun_kabisat_dan_bukan_kabisat_antara (tahunAwal,tahunAkhir)
+
+print(f'\ntahun kabisat antara {tahunAwal} dan {tahunAwal} adalah')
+print(tahun_kabisat,'\n')
+
+print(f'tahun bukan kabisat antara {tahunAwal} dan {tahunAwal} adalah')
+print(tahun_bukan_kabisat)
